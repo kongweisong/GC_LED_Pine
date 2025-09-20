@@ -1,0 +1,73 @@
+T2AB4 000:002.883   SEGGER J-Link V7.82 Log File
+T2AB4 000:002.967   DLL Compiled: Oct 13 2022 13:32:51
+T2AB4 000:002.970   Logging started @ 2025-09-20 02:12
+T2AB4 000:002.973 - 2.975ms
+T2AB4 000:002.979 JLINK_SetWarnOutHandler(...)
+T2AB4 000:002.983 - 0.005ms
+T2AB4 000:002.987 JLINK_OpenEx(...)
+T2AB4 000:004.182   Firmware: J-Link V9 compiled May  7 2021 16:26:12
+T2AB4 000:004.457   Firmware: J-Link V9 compiled May  7 2021 16:26:12
+T2AB4 000:004.571   Decompressing FW timestamp took 93 us
+T2AB4 000:010.388   Hardware: V9.70
+T2AB4 000:010.398   S/N: 602717758
+T2AB4 000:010.402   OEM: SEGGER
+T2AB4 000:010.407   Feature(s): RDI, FlashBP, FlashDL, JFlash, GDB
+T2AB4 000:011.267   TELNET listener socket opened on port 19021
+T2AB4 000:011.330   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
+T2AB4 000:011.425   WEBSRV Webserver running on local port 19080
+T2AB4 000:014.701 - 11.722ms returns "O.K."
+T2AB4 000:014.731 JLINK_GetEmuCaps()
+T2AB4 000:014.734 - 0.005ms returns 0xB9FF7BBF
+T2AB4 000:014.744 JLINK_TIF_GetAvailable(...)
+T2AB4 000:014.930 - 0.188ms
+T2AB4 000:014.935 JLINK_SetErrorOutHandler(...)
+T2AB4 000:014.938 - 0.004ms
+T2AB4 000:014.955 JLINK_ExecCommand("ProjectFile = "E:\CompanyProject\CompanyProject\GC_LED_KZ_new\MDK-ARM\JLinkSettings.ini"", ...). 
+T2AB4 000:022.736   Ref file found at: E:\Keil_v5\ARM\Segger\JLinkDevices.ref
+T2AB4 000:022.795   REF file references invalid XML file: C:\Program Files\SEGGER\JLink\JLinkDevices.xml
+T2AB4 000:022.842 - 7.888ms returns 0x00
+T2AB4 000:024.951 JLINK_ExecCommand("Device = STM32F030C8Tx", ...). 
+T2AB4 000:026.491   Device "STM32F030C8" selected.
+T2AB4 000:026.659 - 1.700ms returns 0x00
+T2AB4 000:026.667 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
+T2AB4 000:026.673 - 0.002ms returns 0x01
+T2AB4 000:026.677 JLINK_GetHardwareVersion()
+T2AB4 000:026.680 - 0.004ms returns 97000
+T2AB4 000:026.686 JLINK_GetDLLVersion()
+T2AB4 000:026.689 - 0.004ms returns 78200
+T2AB4 000:026.693 JLINK_GetOEMString(...)
+T2AB4 000:026.696 JLINK_GetFirmwareString(...)
+T2AB4 000:026.699 - 0.004ms
+T2AB4 000:030.637 JLINK_GetDLLVersion()
+T2AB4 000:030.650 - 0.015ms returns 78200
+T2AB4 000:030.655 JLINK_GetCompileDateTime()
+T2AB4 000:030.658 - 0.004ms
+T2AB4 000:033.073 JLINK_GetFirmwareString(...)
+T2AB4 000:033.084 - 0.012ms
+T2AB4 000:034.265 JLINK_GetHardwareVersion()
+T2AB4 000:034.275 - 0.011ms returns 97000
+T2AB4 000:035.426 JLINK_GetSN()
+T2AB4 000:035.434 - 0.010ms returns 602717758
+T2AB4 000:036.684 JLINK_GetOEMString(...)
+T2AB4 000:038.917 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T2AB4 000:039.349 - 0.434ms returns 0x00
+T2AB4 000:039.355 JLINK_HasError()
+T2AB4 000:039.370 JLINK_SetSpeed(5000)
+T2AB4 000:039.424 - 0.055ms
+T2AB4 000:039.429 JLINK_GetId()
+T2AB4 000:040.691   InitTarget() start
+T2AB4 000:040.706    J-Link Script File: Executing InitTarget()
+T2AB4 000:143.350   Can not attach to CPU. Trying connect under reset.
+T2AB4 000:296.633   Connecting to CPU via connect under reset failed.
+T2AB4 000:349.057   InitTarget() end
+T2AB4 000:350.228   Connect failed. Resetting via Reset pin and trying again.
+T2AB4 000:413.822   InitTarget() start
+T2AB4 000:413.839    J-Link Script File: Executing InitTarget()
+T2AB4 000:516.341   Can not attach to CPU. Trying connect under reset.
+T2AB4 000:669.159   Connecting to CPU via connect under reset failed.
+T2AB4 000:720.885   InitTarget() end
+T2AB4 000:720.904 - 681.476ms returns 0x00000000
+T2AB4 002:269.253 JLINK_Close()
+T2AB4 002:273.353 - 4.122ms
+T2AB4 002:273.378   
+T2AB4 002:273.381   Closed
