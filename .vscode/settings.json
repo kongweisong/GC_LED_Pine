@@ -1,0 +1,8 @@
+{
+    "trae.tab.enableRename": false,
+    "trae.tab.enableAutoImport": false,
+    "files.associations": {
+        "pwm_control.h": "c",
+        "key.h": "c"
+    }
+}

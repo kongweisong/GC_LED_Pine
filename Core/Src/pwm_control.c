@@ -10,37 +10,32 @@ extern SystemDef sys;
  uint16_t pwm_outside_warm_now;		//目前外圈暖光PWM值
  uint16_t pwm_inside_cold_now;		//目前内圈冷光PWM值
  uint16_t pwm_inside_warm_now;		//目前内圈暖光PWM值
- uint16_t pwm_red_now;						//目前红光PWM值
- uint16_t pwm_green_now;					//目前绿光PWM值
+ uint16_t pwm_red_now;		        //目前红光PWM值
+ uint16_t pwm_green_now;			    //目前绿光PWM值
 void pwm_send_to_driverboard(void)
 {
-
-	static uint16_t pwm_outside_cold_want;	//目标外圈冷光PWM值
-	static uint16_t pwm_outside_warm_want;	//目标外圈暖光PWM值
-	static uint16_t pwm_inside_cold_want;		//目标外圈冷光PWM值
-	static uint16_t pwm_inside_warm_want;		//目标外圈暖光PWM值
-	static uint16_t pwm_red_want;					  //目标红光PWM值	
-	static uint16_t pwm_green_want;				  //目标绿光PWM值
-
-
-	uint16_t color_temp_up;							    
-	uint16_t color_temp_down;
+	static uint16_t pwm_outside_cold_want;				  // 外圈冷光PWM目标值
+	static uint16_t pwm_outside_warm_want;				  // 外圈暖光PWM目标值
+	static uint16_t pwm_inside_cold_want;				    // 内圈冷光PWM目标值
+	static uint16_t pwm_inside_warm_want;				    // 内圈暖光PWM目标值
+	static uint16_t pwm_red_want;						        // 红光PWM目标值
+	static uint16_t pwm_green_want;						      // 绿光PWM目标值
+	uint16_t color_temp_up;								          // 色温上点的计算值（用于插值计算）
+	uint16_t color_temp_down;							          // 色温下点的计算值（用于插值计算）
 	
-	//  这应该是步进值 和 实际值 吧  ？？？
-	static uint16_t pwm_outside_cold_want_calculate;	
-	static uint16_t pwm_outside_cold_change_temp;
-	static uint16_t pwm_outside_warm_want_calculate;
-	static uint16_t pwm_outside_warm_change_temp;
-	static uint16_t pwm_inside_cold_want_calculate;
-	static uint16_t pwm_inside_warm_want_calculate;
-	static uint16_t pwm_inside_cold_change_temp;
-	static uint16_t pwm_inside_warm_change_temp;
+	static uint16_t pwm_outside_cold_want_calculate;// 外圈冷光PWM目标值的中间计算变量
+	static uint16_t pwm_outside_cold_change_temp;		// 外圈冷光PWM变化过渡的临时变量
+	static uint16_t pwm_outside_warm_want_calculate;// 外圈暖光PWM目标值的中间计算变量
+	static uint16_t pwm_outside_warm_change_temp;		// 外圈暖光PWM变化过渡的临时变量
+	static uint16_t pwm_inside_cold_want_calculate;	// 内圈冷光PWM目标值的中间计算变量
+	static uint16_t pwm_inside_warm_want_calculate;	// 内圈暖光PWM目标值的中间计算变量
+	static uint16_t pwm_inside_cold_change_temp;		// 内圈冷光PWM变化过渡的临时变量
+	static uint16_t pwm_inside_warm_change_temp;		// 内圈暖光PWM变化过渡的临时变量
 	
-	static uint16_t pwm_red_want_calculate;	
-	static uint16_t pwm_red_change_temp;
-	static uint16_t pwm_green_want_calculate;
-	static uint16_t pwm_green_change_temp;
-	
+	static uint16_t pwm_red_want_calculate;				  // 红光PWM目标值的中间计算变量
+	static uint16_t pwm_red_change_temp;				    // 红光PWM变化过渡的临时变量
+	static uint16_t pwm_green_want_calculate;			  // 绿光PWM目标值的中间计算变量
+	static uint16_t pwm_green_change_temp;				  // 绿光PWM变化过渡的临时变量
 	if(sys.on_off == true)	//开机处理
 	{
 		switch(sys.ID)
@@ -129,7 +124,6 @@ void pwm_send_to_driverboard(void)
 						break;
 				}
 				break;
-/*************************************************************************************************************************************
 			case LED_500:
 				switch(sys.mode)	
 				{
@@ -375,7 +369,6 @@ void pwm_send_to_driverboard(void)
 						break;
 				}
 				break;
-*************************************************************************************************************************************/
 			default:
 				break;
 		}
@@ -426,7 +419,6 @@ void pwm_send_to_driverboard(void)
 			}
 		}
 	}
-	
 	if(pwm_outside_warm_want_calculate != pwm_outside_warm_want)
 	{
 		pwm_outside_warm_want_calculate = pwm_outside_warm_want;
@@ -447,7 +439,6 @@ void pwm_send_to_driverboard(void)
 			}
 		}
 	}
-	
 	if(pwm_inside_cold_want_calculate != pwm_inside_cold_want)
 	{
 		pwm_inside_cold_want_calculate = pwm_inside_cold_want;
@@ -468,7 +459,6 @@ void pwm_send_to_driverboard(void)
 			}
 		}
 	}
-	
 	if(pwm_inside_warm_want_calculate != pwm_inside_warm_want)
 	{
 		pwm_inside_warm_want_calculate = pwm_inside_warm_want;
@@ -489,7 +479,6 @@ void pwm_send_to_driverboard(void)
 			}
 		}
 	}
-	
 	if(pwm_red_want_calculate != pwm_red_want)
 	{
 		pwm_red_want_calculate = pwm_red_want;
@@ -510,7 +499,6 @@ void pwm_send_to_driverboard(void)
 			}
 		}
 	}
-	
 	if(pwm_green_want_calculate != pwm_green_want)
 	{
 		pwm_green_want_calculate = pwm_green_want;
@@ -531,11 +519,6 @@ void pwm_send_to_driverboard(void)
 			}
 		}
 	}
-	
-
-
-
-
 	if(pwm_outside_cold_now != pwm_outside_cold_want)		
 	{
 		if(sys.pwm_change_mode == PWM_CHANGE_FAST)	//无渐变
@@ -597,11 +580,6 @@ void pwm_send_to_driverboard(void)
 	}
 	if(pwm_outside_warm_now != pwm_outside_warm_want)
 	{
-		#if MY_DEBUG
-		vTracePrintF(DebugChannel, "pwm_outside_warm_now:%d", pwm_outside_warm_now);
-		vTracePrintF(DebugChannel, "pwm_outside_warm_want:%d", pwm_outside_warm_want);
-		vTracePrintF(DebugChannel, "pwm_outside_warm_change_temp:%d", pwm_outside_warm_change_temp);
-		#endif
 		if(sys.pwm_change_mode == PWM_CHANGE_FAST)
 		{
 			pwm_outside_warm_now = pwm_outside_warm_want;
@@ -785,7 +763,6 @@ void pwm_send_to_driverboard(void)
 				}
 			}
 		}
-		
 		switch(sys.ID)
 		{
 			case LED_700:
