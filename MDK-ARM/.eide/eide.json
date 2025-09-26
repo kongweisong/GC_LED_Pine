@@ -62,6 +62,9 @@
                   },
                   {
                     "path": "../Core/Src/stm32f0xx_hal_msp.c"
+                  },
+                  {
+                    "path": "../Core/Src/myflash.c"
                   }
                 ],
                 "folders": []
@@ -284,8 +287,8 @@
         "bin": "",
         "baseAddr": "",
         "cpuInfo": {
-          "vendor": "null",
-          "cpuName": "null"
+          "vendor": "ST",
+          "cpuName": "STM32F030C8"
         },
         "proType": 1,
         "speed": 8000,

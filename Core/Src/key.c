@@ -148,7 +148,6 @@ uint8_t KeyScan(void)
     {
       key5_state = 1;
       press_time = 0;
-      press_time_long = 0;
     }
     press_time++;
   }
@@ -170,7 +169,6 @@ uint8_t KeyScan(void)
     {
       key6_state = 1;
       press_time = 0;
-      press_time_long = 0;
     }
     press_time++;
   }
@@ -192,11 +190,10 @@ uint8_t KeyScan(void)
     {
       key7_state = 1;
       press_time = 0;
-      press_time_long = 0;
     }
     press_time++;
   }
-  else // 按键松开daww1
+  else // 按键松开
   {
     if (key7_state == 1)
     {
@@ -214,7 +211,6 @@ uint8_t KeyScan(void)
     {
       key8_state = 1;
       press_time = 0;
-      press_time_long = 0;
     }
     press_time++;
   }
@@ -236,7 +232,6 @@ uint8_t KeyScan(void)
     {
       key9_state = 1;
       press_time = 0;
-      press_time_long = 0;
     }
     press_time++;
   }
@@ -259,29 +254,12 @@ uint8_t KeyScan(void)
       press_time = 0;
     }
     press_time++;
-
   }
   else // 按键松开
   {
     if (key10_state == 1)
     {
-			if (press_time >= LONG_PRESS_TIME_2s) 
-			{		
-					key10_state = 0;
-					sys.language_flash  = !sys.language_flash;
-					sys.language  = !sys.language;
-					WriteInf();
-					press_time = 0;
-					if (sys.on_off == 0) // 关机
-					{
-						tft_power_off();
-					}
-					else // 开机
-					{
-						tft_power_on(); // 显示界面
-					}
-			}
-      else if (press_time > SHORT_PRESS_TIME) // 短按
+      if (press_time > SHORT_PRESS_TIME) // 短按
       {
         KeyTemp = KEY10 | KEY_SHORT;
       }
@@ -391,6 +369,8 @@ void KeyFunc(void)
       break;
     case KEY10:             // 语言
 			sys.language = !sys.language;
+      sys.language_flash = sys.language;
+      WriteInf();
       if (sys.on_off == 0) // 关机
       {
         tft_power_off();

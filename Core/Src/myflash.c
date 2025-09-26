@@ -48,7 +48,7 @@ void ReadInf(void)
 	uint32_t dateread[2];		//4个字节的存储信息
 	uint32_t addr = FLASH_USER_START_ADDR;
 	dateread[0]    = *(__IO uint32_t *)(addr);	
-  sys.language_flash     = *(__IO uint32_t *)(addr+4);
+  	sys.language_flash     = *(__IO uint32_t *)(addr+4);
 	if(dateread[0]!=0x12345678)	//如果是新的内存块
 	{
 		ResetInf();

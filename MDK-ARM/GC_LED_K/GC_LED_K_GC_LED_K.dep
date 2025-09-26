@@ -42,7 +42,7 @@ I (E:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (E:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (../Core/Inc/tft.h)(0x68C9026C)
 I (../Core/Inc/usart_control.h)(0x68BFDDEE)
-I (../Core/Inc/pwm_control.h)(0x68CE0B29)
+I (../Core/Inc/pwm_control.h)(0x68D0F9C7)
 I (../Core/Inc/myflash.h)(0x68CCF4BD)
 F (..\Core\Src\tft.c)(0x68CA44DE)(--c99 -c --cpu Cortex-M0 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_GC_LED_K-IE:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IE:\Keil_v5\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F030x8 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x8-o gc_led_k\tft.o --omf_browse gc_led_k\tft.crf --depend gc_led_k\tft.d)
 I (../Core/Inc/tft.h)(0x68C9026C)
@@ -130,8 +130,8 @@ I (../Core/Inc/key.h)(0x68CCF5FA)
 I (E:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (E:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (../Core/Inc/tim.h)(0x68BF938A)
-F (..\Core\Src\pwm_control.c)(0x68D0A889)(--c99 -c --cpu Cortex-M0 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_GC_LED_K-IE:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IE:\Keil_v5\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F030x8 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x8-o gc_led_k\pwm_control.o --omf_browse gc_led_k\pwm_control.crf --depend gc_led_k\pwm_control.d)
-I (../Core/Inc/pwm_control.h)(0x68CE0B29)
+F (..\Core\Src\pwm_control.c)(0x68D0F37E)(--c99 -c --cpu Cortex-M0 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_GC_LED_K-IE:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IE:\Keil_v5\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F030x8 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x8-o gc_led_k\pwm_control.o --omf_browse gc_led_k\pwm_control.crf --depend gc_led_k\pwm_control.d)
+I (../Core/Inc/pwm_control.h)(0x68D0F9C7)
 I (../Core/Inc/gpio.h)(0x68B14F27)
 I (../Core/Inc/main.h)(0x68C90E99)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x68BF92F2)
@@ -220,7 +220,7 @@ I (E:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x60252374)
 I (E:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (../Core/Inc/myflash.h)(0x68CCF4BD)
 I (../Core/Inc/usart_control.h)(0x68BFDDEE)
-I (../Core/Inc/pwm_control.h)(0x68CE0B29)
+I (../Core/Inc/pwm_control.h)(0x68D0F9C7)
 F (../Core/Src/gpio.c)(0x68C90E97)(--c99 -c --cpu Cortex-M0 -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include-I.\RTE\_GC_LED_K-IE:\Keil_v5\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IE:\Keil_v5\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="536" -D_RTE_ -DSTM32F030x8 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x8-o gc_led_k\gpio.o --omf_browse gc_led_k\gpio.crf --depend gc_led_k\gpio.d)
 I (../Core/Inc/gpio.h)(0x68B14F27)
 I (../Core/Inc/main.h)(0x68C90E99)

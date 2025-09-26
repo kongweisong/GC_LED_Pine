@@ -3,7 +3,7 @@
 <title>Static Call Graph - [GC_LED_K\GC_LED_K.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image GC_LED_K\GC_LED_K.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Sep 22 09:38:18 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Sep 22 15:24:56 2025
 <BR><P>
 <H3>Maximum Stack Usage =        508 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1480,7 +1480,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[e8]"></a>pwm_send_to_driverboard</STRONG> (Thumb, 4600 bytes, Stack size 72 bytes, pwm_control.o(i.pwm_send_to_driverboard))
+<P><STRONG><a name="[e8]"></a>pwm_send_to_driverboard</STRONG> (Thumb, 4518 bytes, Stack size 72 bytes, pwm_control.o(i.pwm_send_to_driverboard))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = pwm_send_to_driverboard &rArr; huart1_send &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout &rArr; UART_EndRxTransfer
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;huart1_send
