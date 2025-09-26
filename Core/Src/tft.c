@@ -20,10 +20,8 @@
 #define TFT_LINE_OFFSET 0
 extern SystemDef sys;
 
-
-uint32_t DMA1_MEM_LEN;	//保存DMA每次数据传送的长度
-uint8_t SendBuff[2*TFT_COLUMN_NUMBER];
-
+uint32_t DMA1_MEM_LEN; // 保存DMA每次数据传送的长度
+uint8_t SendBuff[2 * TFT_COLUMN_NUMBER];
 
 void tft_reset(void)
 {
@@ -34,9 +32,9 @@ void tft_reset(void)
 }
 void tft_send_cmd(uint8_t o_command)
 {
-	tft_dc_0();	
-	HAL_SPI_Transmit_DMA(&hspi1, &o_command, 1);	
-	tft_dc_1();	
+	tft_dc_0();
+	HAL_SPI_Transmit_DMA(&hspi1, &o_command, 1);
+	tft_dc_1();
 }
 void tft_send_data(uint8_t o_data)
 {
@@ -66,24 +64,25 @@ void tft_address_set(uint8_t x_start, uint8_t y_start, uint8_t x_end, uint8_t y_
 }
 void tft_full(unsigned long color)
 {
-    uint16_t i, j;
-    uint8_t buffer[TFT_COLUMN_NUMBER * 2];
-    
-    uint8_t high_byte = (color >> 8);
-    uint8_t low_byte = color;
-    for(i = 0; i < TFT_COLUMN_NUMBER * 2; i += 2)
-    {
-        buffer[i] = high_byte;
-        buffer[i + 1] = low_byte;
-    }
-    tft_address_set(0, 0, TFT_COLUMN_NUMBER, TFT_LINE_NUMBER);
-    
-    for(j = 0; j < TFT_LINE_NUMBER; j++)
-    {
-        HAL_SPI_Transmit_DMA(&hspi1, buffer, TFT_COLUMN_NUMBER * 2);
-        // 等待DMA传输完成
-        while(HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_BUSY_TX);
-    }
+	uint16_t i, j;
+	uint8_t buffer[TFT_COLUMN_NUMBER * 2];
+
+	uint8_t high_byte = (color >> 8);
+	uint8_t low_byte = color;
+	for (i = 0; i < TFT_COLUMN_NUMBER * 2; i += 2)
+	{
+		buffer[i] = high_byte;
+		buffer[i + 1] = low_byte;
+	}
+	tft_address_set(0, 0, TFT_COLUMN_NUMBER, TFT_LINE_NUMBER);
+
+	for (j = 0; j < TFT_LINE_NUMBER; j++)
+	{
+		HAL_SPI_Transmit_DMA(&hspi1, buffer, TFT_COLUMN_NUMBER * 2);
+		// 等待DMA传输完成
+		while (HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_BUSY_TX)
+			;
+	}
 }
 void tft_drawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color)
 {
@@ -357,38 +356,40 @@ void tft_ShowStr14_14(uint16_t x, uint16_t y, uint32_t max_width, char *str, uin
 
 void LCD_Image(uint16_t x, uint16_t y, uint16_t width, uint16_t height, const uint8_t *image)
 {
-    tft_address_set(x, y, x + width - 1, y + height - 1);
-    
-    // 一次性传输整个图像数据
-    HAL_SPI_Transmit_DMA(&hspi1, (uint8_t*)image, width * height * 2);
-    
-    // 等待DMA传输完成
-    while(HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_BUSY_TX);
+	tft_address_set(x, y, x + width - 1, y + height - 1);
+
+	// 一次性传输整个图像数据
+	HAL_SPI_Transmit_DMA(&hspi1, (uint8_t *)image, width * height * 2);
+
+	// 等待DMA传输完成
+	while (HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_BUSY_TX)
+		;
 }
 void LCD_Imagevertical(uint16_t x, uint16_t y, uint16_t width, uint16_t height, const uint8_t *image)
 {
-    // 设置显示窗口
-    tft_address_set(x, y, x + width - 1, y + height - 1);
-    
-    // 创建行缓冲区
-    uint8_t line_buffer[width * 2];
-    
-    for (uint16_t row = 0; row < height; row++)
-    {
-        // 填充行缓冲区
-        for (uint16_t col = 0; col < width; col++)
-        {			
-            uint32_t index = (col * height + row) * 2;
-            uint32_t buffer_index = col * 2;
-            
-            line_buffer[buffer_index] = image[index];
-            line_buffer[buffer_index + 1] = image[index + 1];
-        }
-        
-        // 批量传输整行数据
-        HAL_SPI_Transmit_DMA(&hspi1, line_buffer, width * 2);
-        while(HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_BUSY_TX);
-    }
+	// 设置显示窗口
+	tft_address_set(x, y, x + width - 1, y + height - 1);
+
+	// 创建行缓冲区
+	uint8_t line_buffer[width * 2];
+
+	for (uint16_t row = 0; row < height; row++)
+	{
+		// 填充行缓冲区
+		for (uint16_t col = 0; col < width; col++)
+		{
+			uint32_t index = (col * height + row) * 2;
+			uint32_t buffer_index = col * 2;
+
+			line_buffer[buffer_index] = image[index];
+			line_buffer[buffer_index + 1] = image[index + 1];
+		}
+
+		// 批量传输整行数据
+		HAL_SPI_Transmit_DMA(&hspi1, line_buffer, width * 2);
+		while (HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_BUSY_TX)
+			;
+	}
 }
 /**
  * @brief 显示列优先格式图片的指定部分
@@ -398,44 +399,47 @@ void LCD_Imagevertical(uint16_t x, uint16_t y, uint16_t width, uint16_t height, 
  * @param img_width, img_height 原始图片的总尺寸
  * @param image 图片数据指针
  */
-void LCD_ImageVerticalPartial(uint16_t x, uint16_t y, uint16_t src_x, uint16_t src_y, 
-                             uint16_t width, uint16_t height, uint16_t img_width, 
-                             uint16_t img_height, const uint8_t *image)
+void LCD_ImageVerticalPartial(uint16_t x, uint16_t y, uint16_t src_x, uint16_t src_y,
+							  uint16_t width, uint16_t height, uint16_t img_width,
+							  uint16_t img_height, const uint8_t *image)
 {
-    // 参数校验和边界处理
-    if (src_x >= img_width || src_y >= img_height) return;
-    
-    uint16_t actual_width = (src_x + width > img_width) ? (img_width - src_x) : width;
-    uint16_t actual_height = (src_y + height > img_height) ? (img_height - src_y) : height;
-    
-    if (actual_width == 0 || actual_height == 0) return;
+	// 参数校验和边界处理
+	if (src_x >= img_width || src_y >= img_height)
+		return;
 
-    // 创建行缓冲区
-    uint8_t line_buffer[actual_width * 2]; // 每行像素数据
-    
-    tft_address_set(x, y, x + actual_width - 1, y + actual_height - 1);
+	uint16_t actual_width = (src_x + width > img_width) ? (img_width - src_x) : width;
+	uint16_t actual_height = (src_y + height > img_height) ? (img_height - src_y) : height;
 
-    // 逐行处理
-    for (uint16_t row = 0; row < actual_height; row++)
-    {
-        uint16_t src_row = src_y + row;
-        uint32_t buffer_index = 0;
-        
-        // 填充行缓冲区
-        for (uint16_t col = 0; col < actual_width; col++)
-        {
-            uint16_t src_col = src_x + col;
-            // 列优先格式索引：列索引 × 图片总高度 + 行索引
-            uint32_t image_index = (src_col * img_height + src_row) * 2;
-            
-            line_buffer[buffer_index++] = image[image_index];     // 高字节
-            line_buffer[buffer_index++] = image[image_index + 1]; // 低字节
-        }
-        
-        // 批量传输整行数据
-        HAL_SPI_Transmit_DMA(&hspi1, line_buffer, actual_width * 2);
-        while(HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_BUSY_TX);
-    }
+	if (actual_width == 0 || actual_height == 0)
+		return;
+
+	// 创建行缓冲区
+	uint8_t line_buffer[actual_width * 2]; // 每行像素数据
+
+	tft_address_set(x, y, x + actual_width - 1, y + actual_height - 1);
+
+	// 逐行处理
+	for (uint16_t row = 0; row < actual_height; row++)
+	{
+		uint16_t src_row = src_y + row;
+		uint32_t buffer_index = 0;
+
+		// 填充行缓冲区
+		for (uint16_t col = 0; col < actual_width; col++)
+		{
+			uint16_t src_col = src_x + col;
+			// 列优先格式索引：列索引 × 图片总高度 + 行索引
+			uint32_t image_index = (src_col * img_height + src_row) * 2;
+
+			line_buffer[buffer_index++] = image[image_index];	  // 高字节
+			line_buffer[buffer_index++] = image[image_index + 1]; // 低字节
+		}
+
+		// 批量传输整行数据
+		HAL_SPI_Transmit_DMA(&hspi1, line_buffer, actual_width * 2);
+		while (HAL_SPI_GetState(&hspi1) == HAL_SPI_STATE_BUSY_TX)
+			;
+	}
 }
 
 /**
@@ -468,9 +472,7 @@ void TFT_ClearArea(uint16_t x_start, uint16_t y_start, uint16_t x_end, uint16_t 
 		tft_send_data(hi);
 		tft_send_data(lo);
 	}
-}  
-
-
+}
 
 void tft_power_off(void)
 {
@@ -481,37 +483,36 @@ void tft_power_off(void)
 	}
 	else
 	{
-		LCD_Image(25, 40, 110, 44, gImage_power_on_en);	
+		LCD_Image(25, 40, 110, 44, gImage_power_on_en);
 	}
-
 }
 void tft_power_on(void)
 {
 	tft_full(SKY_BLUE);
-  if (sys.ID == LED_700)
-  {
-		tft_ShowStr12_12(60, 3, 120, "LED 700", BLACK, SKY_BLUE);		
-	  sys.green = 100; // 绿光初始值
-    sys.red = 100;   // 红光初始值	
-  }
+	if (sys.ID == LED_700)
+	{
+		tft_ShowStr12_12(60, 3, 120, "LED 700", BLACK, SKY_BLUE);
+		sys.green = 100; // 绿光初始值
+		sys.red = 100;	 // 红光初始值
+	}
 	else if (sys.ID == LED_500)
-  {
-		tft_ShowStr12_12(60, 3, 120, "LED 500", BLACK, SKY_BLUE);		
-	  sys.green = 100; // 绿光初始值
-    sys.red = 100;   // 红光初始值			
-  }
+	{
+		tft_ShowStr12_12(60, 3, 120, "LED 500", BLACK, SKY_BLUE);
+		sys.green = 100; // 绿光初始值
+		sys.red = 100;	 // 红光初始值
+	}
 	else if (sys.ID == LED_6)
-  {
-		tft_ShowStr12_12(60, 3, 120, "LED 6", BLACK, SKY_BLUE);	
-	  sys.green = 30; // 绿光初始值
-    sys.red = 30;   // 红光初始值			
-  }	
+	{
+		tft_ShowStr12_12(60, 3, 120, "LED 6", BLACK, SKY_BLUE);
+		sys.green = 30; // 绿光初始值
+		sys.red = 30;	// 红光初始值
+	}
 	else if (sys.ID == LED_4)
-  {
-		tft_ShowStr12_12(60, 3, 120, "LED 4", BLACK, SKY_BLUE);	
-	  sys.green = 30; // 绿光初始值
-    sys.red = 30;   // 红光初始值			
-  }	
+	{
+		tft_ShowStr12_12(60, 3, 120, "LED 4", BLACK, SKY_BLUE);
+		sys.green = 30; // 绿光初始值
+		sys.red = 30;	// 红光初始值
+	}
 	tft_ShowStr12_12(132, 3, 120, "V1.0", BLACK, SKY_BLUE);
 	tft_drawLine(02, 15, 158, 15, BLACK);
 	if (sys.language == 0) // 中文
@@ -596,7 +597,7 @@ void tft_power_on(void)
 	{
 		tft_ShowStr12_12(120, 110, 120, "NORMAL", BLACK, SKY_BLUE);
 	}
-//	pwm_set(); // 设置PWM
+	//	pwm_set(); // 设置PWM
 	tft_level();
 	tft_mode();
 }

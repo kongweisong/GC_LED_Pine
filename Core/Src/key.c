@@ -282,7 +282,7 @@ void Param_init(void)
   sys.mode = 4;     // 模式初始值
   level = 1;
   sys.language = sys.language_flash; //语言 0中文 1英文
-	sys.pwm_change_mode = PWM_CHANGE_SLOW;
+	sys.pwm_change_mode = PWM_CHANGE_SLOW;  //渐变模式
 	sys.pwm_change_time = pwm_change_time_default;
 }
 uint8_t key_return;
